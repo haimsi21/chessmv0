@@ -17,7 +17,7 @@ ui <- fluidPage(
   titlePanel(    title = div(" ♔ ♕ ♖ ♗ ♘ ♙ Chess Mining ♟ ♞ ♝ ♜ ♛ ♚",align = "center"),
     windowTitle = ("Chess Mining")),
   
-  navbarPage(title=img(src = 'mini.png', height = '28px'),
+  navbarPage(title="CM",  #img(src = 'mini.png', height = '28px')",
     
     
     tabPanel("Inicio",

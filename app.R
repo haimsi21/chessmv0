@@ -1,20 +1,23 @@
 library(shiny)
-library(DT)
-library(tidyverse)
+library(dplyr)
 library(plotly)
-library(bslib)
 
+
+
+
+fi <- (sqrt(5) + 1) / 2
+pais_df <- read.csv("paises.csv")
+col1<- read.csv ("color.txt", sep="", header = F)  
+  
+  
   #############################################################################################################
 
 ui <- fluidPage(
   # Application title
-  titlePanel(
-    windowTitle = "Chess Mining φ",
-    title = div(" ♔ ♕ ♖ ♗ ♘ ♙ Chess Mining ♟ ♞ ♝ ♜ ♛ ♚",align = "center")
-  ),
+  titlePanel(    title = div(" ♔ ♕ ♖ ♗ ♘ ♙ Chess Mining ♟ ♞ ♝ ♜ ♛ ♚",align = "center"),
+    windowTitle = ("Chess Mining")),
   
-  navbarPage(
-    img(src = 'mini.png', height = '27px'),
+  navbarPage(title=img(src = 'mini.png', height = '28px'),
     
     
     tabPanel("Inicio",
@@ -232,7 +235,7 @@ ui <- fluidPage(
     ),
     
     tabPanel(
-      "♞ Minería ♞",
+      "Minería",
       br(),
       
       h1("5 Reglas del Juego", align = "center"),
@@ -258,21 +261,11 @@ ui <- fluidPage(
     ),
     
     
-    tabPanel("♞ NFT ♞",),
-    tags$script(
-      HTML(
-        "var header = $('.navbar > .container-fluid');
-                              header.append('<div style=\"float:right; padding-top: 8px\"><button id=\"signin\" type=\"button\" class=\"btn btn-primary action-button\" onclick=\"signIn()\">Log in</button></div>')"
-      )
-    )
+    tabPanel("NFT",)
   )
 )
+###########################################################################################################
 
-cc2<- tibble(col1)
-cc1<- sample(col1,1)
-fi <- (sqrt(5) + 1) / 2
-pais_df <- read.csv("paises.csv")
-col1<- read.csv ("color.txt", sep="", header = F)  
 
 server <- function(input, output, session) {
   ### Inicio
@@ -302,8 +295,7 @@ server <- function(input, output, session) {
       opacity = input$tra,
       height = input$alt,
       width = input$anh,
-      color =  ~ id,
-      showscale = F
+      color =  ~ id
     ) %>% #color=I("red"))
       
       add_trace(
